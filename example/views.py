@@ -47,13 +47,21 @@ def get_calendar_data(url):
 
         outdict = {}
 
+        # limit timeframe
+        mon = date.month
+        yr = date.year
+        #print(mon, yr)
+        if yr != 2019: continue
+        if mon < 8 or mon > 12: continue
+
+
         # parse description
         #print("\n------------------", descr)
 
         #Speaker:<name>/n
         r = re.search("Speaker:(.*?)\n", descr)
         if r:
-            #print(date.strftime("%a. %B. %d, %Y"))
+            #print(date.strftime("%a %b %d, %Y"))
             outdict["date"] = date.strftime("%a %b %d, %Y")
             #print(r.group(1))
             outdict["speaker"] = r.group(1)
@@ -85,7 +93,14 @@ def get_calendar_data(url):
     return seminar_list
 
 
+# test
+if __name__ == "__main__":
+    from pprint import pprint
+    # my seminar google calendar
+    url = "https://calendar.google.com/calendar/ical/egdnrrp6oh8325lf720rv01dno%40group.calendar.google.com/public/basic.ics"
 
+    data = get_calendar_data(url)
+    pprint(data)
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):

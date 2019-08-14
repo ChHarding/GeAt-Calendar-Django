@@ -8,7 +8,16 @@ import requests
 import re
 import os
 
-
+def get_current_semester():
+    curr_m = datetime.now().month
+    curr_y = datetime.now().year
+    if curr_m < 6:
+        sem = "Spring"
+    elif 6 >= curr_m >= 7:
+        sem = "Sum"
+    else:
+        sem = "Fall"
+    return sem
 
 # return list of dicts for each seminar
 # the summary part of the event must follow this synatx
@@ -40,6 +49,10 @@ def get_calendar_data(url):
     outstr = ""
     seminar_list = []
 
+    # What is the current semester?
+    sem = get_current_semester()
+
+
     for e in event_list:
         date = datetime.strptime(e[0], "%Y-%m-%d")
         summary = e[1]
@@ -50,10 +63,9 @@ def get_calendar_data(url):
         # limit timeframe
         mon = date.month
         yr = date.year
-        #print(mon, yr)
-        if yr != 2019: continue
-        if mon < 8 or mon > 12: continue
-
+        if yr != datetime.now().year: continue
+        if sem == "Spring" and mon > 8: continue # show spring semster Jan - Jul
+        if sem == "Fall" and mon <= 8: continue  # fall semester Sep - Dec
 
         # parse description
         #print("\n------------------", descr)
@@ -111,9 +123,13 @@ class HomePageView(TemplateView):
         # list of dicts, one for each event
         data = get_calendar_data(url)
 
+        # What is the current semester?
+        sem = get_current_semester()
+        year = datetime.now().year
+
         context = {
-            'data': data
-            "page_title": "GeAt Seminar Calendar Fall 2019"
+            'data': data,
+            "page_title": "GeAt Seminar Calendar " + sem +  " " + str(year)
         }
         return render(request, 'index.html', context)
 

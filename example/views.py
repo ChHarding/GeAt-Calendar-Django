@@ -113,6 +113,7 @@ class HomePageView(TemplateView):
 
         context = {
             'data': data
+            "page_title": "GeAt Seminar Calendar Fall 2019"
         }
         return render(request, 'index.html', context)
 

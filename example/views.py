@@ -96,8 +96,8 @@ def get_calendar_data(url):
         r = re.search("Abstract:(.*?)\n", descr)
         if r:
             #print(repr(r.group(1)), descr)
-            outdict["abstract"] = "Abstract: " + r.group(1)
-            outstr += "Abstract: " + r.group(1) + "\n"
+            outdict["abstract"] = "Abstract:" + r.group(1)
+            outstr += "Abstract:" + r.group(1) + "\n"
 
         if outdict.get("date") != None:
             seminar_list.append(outdict)

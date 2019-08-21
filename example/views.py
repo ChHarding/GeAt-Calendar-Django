@@ -13,7 +13,7 @@ def get_current_semester():
     curr_y = datetime.now().year
     if curr_m < 6:
         sem = "Spring"
-    elif 6 >= curr_m >= 7:
+    elif curr_m == 6 or curr_m == 7:
         sem = "Sum"
     else:
         sem = "Fall"

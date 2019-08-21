@@ -173,7 +173,7 @@
               <td width="12%">{{ e.date }}</td>
               <td width="10%">{{ e.speaker }}</td>
 	      <td width="20%">{{ e.affiliation }}</td>
-              <td width="50%">{{ e.title }} title="{{ e.abstract }}"</td>
+              <td width="50%"> title="{{ e.abstract }}" {{ e.title }}</td>
             </tr>
           {% endfor %}
         </tbody>

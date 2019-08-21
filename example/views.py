@@ -64,8 +64,8 @@ def get_calendar_data(url):
         mon = date.month
         yr = date.year
         if yr != datetime.now().year: continue
-        if sem == "Spring" and mon > 8: continue # show spring semster Jan - Jul
-        if sem == "Fall" and mon <= 8: continue  # fall semester Sep - Dec
+        if sem == "Spring" and mon >= 8: continue # show spring semster Jan - Jul
+        if sem == "Fall" and mon < 8: continue  # fall semester Sep - Dec
 
         # parse description
         #print("\n------------------", descr)

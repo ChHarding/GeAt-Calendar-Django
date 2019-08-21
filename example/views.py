@@ -93,9 +93,9 @@ def get_calendar_data(url):
             outdict["title"] = r.group(1)
             outstr += r.group(1) + "\n"
 
-        r = re.search("Abstract:(.*?)", descr)
+        r = re.search("Abstract:(.*?)\n", descr)
         if r:
-            #print(r.group(1))
+            #print(repr(r.group(1)), descr)
             outdict["abstract"] = r.group(1)
             outstr += r.group(1) + "\n"
 

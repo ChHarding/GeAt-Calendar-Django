@@ -1,4 +1,4 @@
 requests==2.20.0
-Django==2.1.11
+Django==2.2.10
 icalendar==4.0.2
 python_dateutil==2.7.3

@@ -131,5 +131,5 @@ class HomePageView(TemplateView):
             'data': data,
             "page_title": "GeAt Seminar Calendar " + sem +  " " + str(year)
         }
-        return render(request, 'index.html', context)
+        return render(request, 'example/index.html', context)
 
